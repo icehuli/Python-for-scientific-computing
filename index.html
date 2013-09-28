@@ -116,7 +116,7 @@ for a in 'string': # loop
 						<li class="fragment">常用工具 / 库</li>
 						<li class="fragment">做图</li>
 						<li class="fragment">如何扩展Python</li>
-						<li class="fragment">并行计算 / 云计算</li>
+						<li class="fragment">并行计算</li>
 						<li class="fragment">其他应用</li>
 					</ul>
 				</section>
@@ -127,6 +127,15 @@ for a in 'string': # loop
 
 				<section>
 					<h2>Things to know first - <font color="#66FFF4">Profiling</font></h2>
+					<pre class="fragment"><code data-trim contenteditable>
+$  python -m cProfile -o demo.prof demo.py
+					</code></pre>
+
+					<p class="fragment">Use <font color="#66FFF4">gprof2dot</font> to visualize the profiling</p>
+					<pre class="fragment"><code data-trim contenteditable>
+$  gprof2dot -f pstats demo.prof | dot -Tpng -o demo-prof.png
+					</code></pre>
+					<img class="fragment" src="images/profiling.png">
 				</section>
 
 				<section>
@@ -140,25 +149,120 @@ for a in 'string': # loop
 
 				<section>
 					<h2>必备工具 - IPython</h2>
+					<ul>
+						<li class="fragment">互动
+							<ul>
+								<li>Auto-completion</li>
+								<li>Easy access documentation</li>
+								<li><font color="#66FFF4">Syntax</font> <font color="#FF4545">highlighting</font></li>
+								<li>History retriever</li>
+							</ul>
+						</li>
+						
+						<li class="fragment">分享</li>
+					</ul>
 				</section>
 
 				<section>
 					<h2>常用库 - Demo时间！</h2>
+					<ul>
+						<li>Numpy / Scipy (Matlab for Python)</li>
+						<li>Matplotlib (Scientific plotting)</li>
+						<li>Sympy (Symbolic mathematics)</li>
+						<li>Scikit-learn (Machine learning)</li>
+						<li>Scikit-image (Image processing)</li>
+						<li>Mayavi (3D plotting)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>如何写出高效的Python程序</h2>
+					<blockquote class="fragment">
+						<p>&ldquo;Premature optimization is the root of all evil.&rdquo;</p>
+						<footer>—Donald Knuth, TAOCP</footer>
+					</blockquote>
+
+					<ul>
+						<li class="fragment"><font color="#66FFF4">Profiling!</font></li>
+						<li class="fragment">避免大规模For循环</li>
+						<li class="fragment">PyPy</li>
+						<li class="fragment">扩展Python</li>
+						<li class="fragment">并行</li>
+					</ul>
 				</section>
 
 				<section>
 					<h2>如何扩展Python</h2>
+					<ul>
+						<li class="fragment">Python C API / Ctypes</li>
+						<li class="fragment">Ctypes</li>
+						<li class="fragment">SWIG</li>
+					</ul>
+
+					<pre class="fragment"><code data-trim contenteditable>
+%module swig_math
+%{
+#define SWIG_FILE_WITH_INIT
+
+int add(double *f, int dim1, double *g, int dim2, double *out, int dim3);
+
+%}
+%include "numpy.i"
+%init %{
+    import_array();
+%}
+
+int add(double *IN_ARRAY1, int DIM1, double *IN_ARRAY1, int DIM1, double *INPLACE_ARRAY1, int DIM1);
+					</code></pre>
 				</section>
 
 				<section>
-					<h2>并行计算 / 云计算</h2>
+					<h2>并行计算</h2>
+					<ul>
+						<li class="fragment">多线程</li>
+						<li class="fragment">GPU computing - PyCuda</li>
+						<li class="fragment">Message Passing Interface (MPI)</li>
+					</ul>
+
+					<pre class="fragment"><code data-trim contenteditable>
+from mpi import MPI
+mpi = MPI()
+
+def pow(x):
+    return x**2
+
+mpi.begin()
+
+x = range(10)
+
+result = mpi.parfor(pow, x)
+
+mpi.end()
+					</code></pre>
 				</section>
 
 				<section>
-					<h2>其他应用</h2>
-					<h3>Beyond scientific computing</h3>
-					<!-- Web: Django -->
-					<!-- Cloud computing -->
+					<section>
+						<h2>其他应用</h2>
+						<h3><font color="#66FFF4">Web框架</font></h3>
+						<ul>
+							<li class="fragment">Django</li>
+							<li class="fragment">Bottle</li>
+							<li class="fragment">CherryPy</li>
+							<li class="fragment">Flask</li>
+							<li class="fragment">Tornado</li>
+						</ul>
+					</section>
+					
+					<section>
+						<h2>其他应用</h2>
+						<h3><font color="#66FFF4">云计算</font></h3>
+						<ul>
+							<li class="fragment"><a href="https://gist.github.com/iamatypeofwalrus/5183133">IPython notebook + Amazon EC2</a></li>
+							<li class="fragment">PiCloud</li>
+						</ul>
+						<iframe class="fragment" width="420" height="345"src="http://www.youtube.com/embed/GAeHlr1xxl8"></iframe>
+					</section>
 				</section>
 
 				<section data-background="images/mikasa.png">

@@ -122,19 +122,6 @@ for a in 'string': # loop
 				</section>
 
 				<section>
-					<h2>Things to know first - <font color="#66FFF4">Profiling</font></h2>
-					<pre class="fragment"><code data-trim contenteditable>
-$  python -m cProfile -o demo.prof demo.py
-					</code></pre>
-
-					<p class="fragment">Use <font color="#66FFF4">gprof2dot</font> to visualize the profiling</p>
-					<pre class="fragment"><code data-trim contenteditable>
-$  gprof2dot -f pstats demo.prof | dot -Tpng -o demo-prof.png
-					</code></pre>
-					<img class="fragment" src="images/profiling.png">
-				</section>
-
-				<section>
 					<h2>Things to know first - <font color="#66FFF4">IDE</font></h2>
 					<ul>
 						<li class="fragment" data-fragment-index="1">Eclipse + PyDev</li>
@@ -221,6 +208,19 @@ $  gprof2dot -f pstats demo.prof | dot -Tpng -o demo-prof.png
 						<li class="fragment">扩展Python</li>
 						<li class="fragment">并行</li>
 					</ul>
+				</section>
+
+				<section>
+					<h2><font color="#66FFF4">Profiling</font></h2>
+					<pre class="fragment"><code data-trim contenteditable>
+$  python -m cProfile -o demo.prof demo.py
+					</code></pre>
+
+					<p class="fragment">Use <font color="#66FFF4">gprof2dot</font> to visualize the profiling</p>
+					<pre class="fragment"><code data-trim contenteditable>
+$  gprof2dot -f pstats demo.prof | dot -Tpng -o demo-prof.png
+					</code></pre>
+					<img class="fragment" src="images/profiling.png">
 				</section>
 
 				<section>
